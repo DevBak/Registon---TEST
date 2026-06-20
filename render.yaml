@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: registon-test-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python registon_test_bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false          # Render dashboard da qo'lda kiritasiz
+      - key: WEBHOOK_URL
+        sync: false          # Render dashboard da qo'lda kiritasiz (masalan: https://registon-test-bot.onrender.com)
+      - key: ADMIN_IDS
+        value: "8307855834"  # Kerak bo'lsa o'zgartiring
+      - key: DB_PATH
+        value: "/opt/render/project/src/registon_bot.db"
+    disk:
+      name: bot-data
+      mountPath: /opt/render/project/src
+      sizeGB: 1
